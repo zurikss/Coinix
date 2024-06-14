@@ -15,7 +15,6 @@ struct CoingateApp: App {
     @StateObject private var portfolio = PortfolioViewModel()
     @StateObject private var settingsViewModel = SettingsViewModel()
     @StateObject private var modeSheetManager = ModeSheetManager()
-    @StateObject private var appIconManager = AppIconSheetManager()
     @State private var showLaunchView: Bool = true
     
     @AppStorage("systemThemeVal") private var systemTheme: Int = SchemeType.allCases.first!.rawValue
@@ -49,7 +48,6 @@ struct CoingateApp: App {
                 .environmentObject(PortfolioViewModel())
                 .environmentObject(settingsViewModel)
                 .environmentObject(modeSheetManager)
-                .environmentObject(appIconManager)
                 
 //                ZStack(content: {
 //                    if showLaunchView {

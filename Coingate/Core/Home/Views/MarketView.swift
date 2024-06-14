@@ -15,7 +15,6 @@ struct MarketView: View {
     @EnvironmentObject var viewModel: PortfolioViewModel
     @EnvironmentObject private var settingsViewModel: SettingsViewModel
     @EnvironmentObject private var modeSheetManager: ModeSheetManager
-    @EnvironmentObject private var appIconManager: AppIconSheetManager
 
 
     
@@ -97,26 +96,6 @@ struct MarketView: View {
             }
         }
         
-        .overlay(alignment: .bottom) {
-            if appIconManager.action.isPresented {
-                Color(.black.opacity(0.5))
-                    .ignoresSafeArea()
-                    .transition(.opacity)
-                    .onTapGesture {
-                        withAnimation(.spring) {
-                            appIconManager.dismiss()
-                        }
-                        
-                    }
-                
-                AppIconCompView {
-                    appIconManager.dismiss()
-                }
-                .transition(.asymmetric(insertion: .move(edge: .bottom).animation(.spring(response: 0.4, dampingFraction: 0.9, blendDuration: 1)), removal: .move(edge: .bottom).animation(.spring(response: 1, dampingFraction: 1, blendDuration: 1))))
-                
-            }
-        }
-        
         .onAppear(perform: {
             coinViewModel.searchText = ""
         })
@@ -132,7 +111,6 @@ struct MarketView_Previews: PreviewProvider {
             .environmentObject(PortfolioViewModel())
             .environmentObject(SettingsViewModel())
             .environmentObject(ModeSheetManager())
-            .environmentObject(AppIconSheetManager())
 
         
     }

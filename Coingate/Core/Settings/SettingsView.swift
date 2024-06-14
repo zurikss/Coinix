@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject private var modeSheetManager: ModeSheetManager
-    @EnvironmentObject private var appIconManager: AppIconSheetManager
     @EnvironmentObject var viewModel: SettingsViewModel
     @State private var showSheet: Bool = false
     
@@ -34,21 +33,6 @@ struct SettingsView: View {
                         .onTapGesture {
                             withAnimation(.spring(response: 0.38, dampingFraction: 0.88, blendDuration: 1)) {
                                 modeSheetManager.present()
-                            }
-                        }
-                        HStack {
-                            Text("App Icon")
-                            Spacer()
-                            Image("arrow-ios-up")
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 24, height: 24, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .foregroundStyle(.gray400)
-                                .rotationEffect(Angle(degrees: 90))
-                        }
-                        .onTapGesture {
-                            withAnimation(.spring(response: 0.38, dampingFraction: 0.88, blendDuration: 1)) {
-                                appIconManager.present()
                             }
                         }
                     }
